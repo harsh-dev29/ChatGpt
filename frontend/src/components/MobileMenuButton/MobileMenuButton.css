@@ -1,0 +1,11 @@
+.mobile-menu-btn {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    background: #2a2a2a;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    padding: 0.4rem 0.6rem;
+    cursor: pointer;
+}

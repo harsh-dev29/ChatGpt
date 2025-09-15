@@ -1,0 +1,258 @@
+:root {
+    /* Light theme */
+    --bg-color: #f5f7fa;
+    --card-bg: #ffffff;
+    --text-color: #1f2937;
+    --input-bg: #f9fafb;
+    --border-color: #d1d5db;
+    --primary-color: #4f46e5;
+    --primary-hover: #4338ca;
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+    /* Dark theme */
+    --bg-color: #111827;
+    --card-bg: #1e293b;
+    --text-color: #f1f5f9;
+    --input-bg: #334155;
+    --border-color: #475569;
+    --primary-color: #6366f1;
+    --primary-hover: #4f46e5;
+    --shadow: rgba(0, 0, 0, 0.5);
+}
+
+body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background 0.3s, color 0.3s;
+}
+
+/* Container */
+.auth-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 1rem;
+}
+
+/* Card */
+.auth-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 1rem;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 6px 20px var(--shadow);
+    transition: background 0.3s;
+}
+
+.auth-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Inputs */
+.auth-input {
+    width: 92%;
+    padding: 0.85rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.6rem;
+    background: var(--input-bg);
+    color: var(--text-color);
+    outline: none;
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+.auth-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+}
+
+/* Button */
+.auth-button {
+    width: 100%;
+    padding: 0.85rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+    border: none;
+    border-radius: 0.6rem;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.auth-button:hover {
+    transform: scale(1.02);
+}
+
+/* Footer */
+.auth-footer {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.auth-footer a {
+    color: var(--primary-color);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+/* Toggle Button (fixed) */
+.theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.6rem 1rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 2rem;
+    cursor: pointer;
+    color: var(--text-color);
+    font-size: 0.85rem;
+    font-weight: 500;
+    box-shadow: 0 4px 12px var(--shadow);
+    transition: background 0.3s, color 0.3s;
+}
+
+.theme-toggle:hover {
+    background: var(--input-bg);
+}
+
+/* chat layout /
+/* Layout */
+.home-container {
+    display: flex;
+    min-height: 100vh;
+    background: var(--bg-color);
+    transition: background 0.3s;
+}
+
+/* Sidebar */
+.sidebar {
+    display: none;
+    /* hidden on mobile */
+    background: var(--card-bg);
+    border-right: 1px solid var(--border-color);
+    padding: 1rem;
+    width: 250px;
+    background-color: transparent;
+    backdrop-filter: blur(5px);
+}
+
+.sidebar-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid gray;
+}
+
+.sidebar-item {
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.sidebar-item:hover {
+    background: var(--input-bg);
+}
+
+/* Chat container */
+.chat-container {
+
+    background: var(--bg-color);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    /* ensures menu button anchors properly */
+}
+
+
+
+
+
+/* Show sidebar on desktop */
+@media (min-width: 768px) {
+    .sidebar {
+        display: block;
+        position: relative;
+        transform: none;
+    }
+}
+
+/* Mobile Sidebar (overlay) */
+.sidebar.open {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    transform: translateX(0);
+    z-index: 100;
+}
+
+/* Mobile Menu Button */
+
+@media (min-width: 768px) {
+    .mobile-menu-btn {
+        display: none;
+    }
+
+
+}
+
+/* Floating New Chat (mobile only) */
+.mobile-menu-btn {
+    position: absolute;
+    /* fix positioning */
+    top: 0.75rem;
+    /* move to top */
+    left: 0.75rem;
+    /* align left */
+    font-size: 1.5rem;
+    background: var(--primary-color);
+    /* use theme color */
+    color: white;
+    /* white icon */
+    border: none;
+    border-radius: 8px;
+    padding: 0.4rem 0.6rem;
+    cursor: pointer;
+    z-index: 102;
+    /* above chat box */
+}
+
+
+@media (min-width: 768px) {
+    .mobile-menu-btn {
+        display: none;
+    }
+}
+
+/* Hide floating button on desktop */
+@media (min-width: 768px) {
+    .mobile-new-chat-btn {
+        display: none;
+        width: 70%;
+    }
+}
+
+/* Desktop view */
+@media (min-width: 768px) {
+    .sidebar {
+        display: block;
+    }
+
+
+}
