@@ -22,7 +22,7 @@ const Register = () => {
         console.log(formData);
 
 
-        axios.post("http://localhost:3000/api/auth/register", {
+        axios.post("https://chatgpt-cwfx.onrender.com/api/auth/register", {
             email: formData.email,
             fullName: {
                 firstName: formData.firstName,
