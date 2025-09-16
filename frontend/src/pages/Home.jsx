@@ -12,7 +12,7 @@ import ThemeToggle from './../components/ThemeToggle';
 import { useNavigate } from 'react-router-dom';
 
 // Declare socket outside the component to ensure a single instance
-const socket = io("http://localhost:3000", {
+const socket = io("https://chatgpt-cwfx.onrender.com", {
     withCredentials: true,
 });
 
@@ -55,7 +55,7 @@ const Home = () => {
     };
 
     const getMessages = async (chatId) => {
-        const response = await axios.get(`http://localhost:3000/api/chat/messages/${chatId}`, { withCredentials: true })
+        const response = await axios.get(`https://chatgpt-cwfx.onrender.com/api/chat/messages/${chatId}`, { withCredentials: true })
         console.log("Fetched messages for chat:", response.data.messages);
         setMessages(response.data.messages.map(m => ({
             content: m.content,
@@ -83,7 +83,7 @@ const Home = () => {
         const title = prompt("Enter a title for you new chat:")
         if (!title) return
 
-        const respsonse = await axios.post('http://localhost:3000/api/chat', {
+        const respsonse = await axios.post('https://chatgpt-cwfx.onrender.com/api/chat', {
             title
         }, {
             withCredentials: true
@@ -102,7 +102,7 @@ const Home = () => {
     };
     useEffect(() => {
         // Fetch chats from the backend on component mount
-        axios.get("http://localhost:3000/api/chat", { withCredentials: true }).then(response => {
+        axios.get("https://chatgpt-cwfx.onrender.com/api/chat", { withCredentials: true }).then(response => {
             // Ensure messages array exists for each chat before setting the state
             const chatsWithMessages = response.data.chats.map(chat => ({
                 ...chat,
