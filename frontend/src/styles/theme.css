@@ -2,7 +2,7 @@
     /* Light theme */
     --bg-color: #f5f7fa;
     --card-bg: #ffffff;
-    --text-color: #1f2937;
+    ;
     --input-bg: #f9fafb;
     --border-color: #d1d5db;
     --primary-color: #4f46e5;
@@ -121,6 +121,7 @@ body {
     font-weight: 500;
     box-shadow: 0 4px 12px var(--shadow);
     transition: background 0.3s, color 0.3s;
+    z-index: 9;
 }
 
 .theme-toggle:hover {
@@ -146,6 +147,7 @@ body {
     width: 250px;
     background-color: transparent;
     backdrop-filter: blur(5px);
+
 }
 
 .sidebar-title {
@@ -154,6 +156,7 @@ body {
     margin-bottom: 1rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid gray;
+    color: var(--text-color);
 }
 
 .sidebar-item {
@@ -164,7 +167,7 @@ body {
 }
 
 .sidebar-item:hover {
-    background: var(--input-bg);
+    background: var(--border-color);
 }
 
 /* Chat container */
@@ -177,9 +180,6 @@ body {
     position: relative;
     /* ensures menu button anchors properly */
 }
-
-
-
 
 
 /* Show sidebar on desktop */
@@ -233,6 +233,21 @@ body {
     /* above chat box */
 }
 
+.login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 1rem 2rem 1rem 2rem;
+    background: #2a2a2a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+
+
+}
 
 @media (min-width: 768px) {
     .mobile-menu-btn {

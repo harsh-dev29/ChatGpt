@@ -1,7 +1,6 @@
 const userModel = require('../models/user.model')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const { model } = require('mongoose')
 
 
 async function registerUser(req, res) {
@@ -58,22 +57,11 @@ async function loginUser(req, res) {
             fullName: user.fullName
         }
     })
-
-
 }
-async function logoutUser(req, res) {
-    const user = req.body
 
-    res.json({
-        message: "user logged out successfully"
-    })
-
-
-}
 
 module.exports = {
     registerUser,
     loginUser,
-    logoutUser
 
 }

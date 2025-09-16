@@ -15,7 +15,7 @@ const Login = () => {
         e.preventDefault();
         console.log(formData);
 
-        axios.post('https://chatgpt-cwfx.onrender.com/api/auth/login', {
+        axios.post('http://localhost:3000/api/auth/login', {
             email: formData.email,
             password: formData.password
         }, {

@@ -5,6 +5,18 @@
     scrollbar-color: black;
 }
 
+[data-theme="dark"] {
+    /* Dark theme */
+    --bg-color: #111827;
+    --card-bg: #1e293b;
+    --text-color: #f1f5f9;
+    --input-bg: #334155;
+    --border-color: #475569;
+    --primary-color: #6366f1;
+    --primary-hover: #4f46e5;
+    --shadow: rgba(0, 0, 0, 0.5);
+}
+
 ::-webkit-scrollbar {
     display: none;
 }
@@ -24,7 +36,6 @@
     flex-direction: column;
     position: relative;
     background: #121212;
-    color: white;
     height: 100vh;
 }
 
@@ -33,12 +44,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    color: (--bg-color);
+    display: flex;
+    flex-direction: column;
 }
 
 .chat-empty h1 {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #d1d5db;
+    color: (--text-color);
+
 }
 
 .user-msg {

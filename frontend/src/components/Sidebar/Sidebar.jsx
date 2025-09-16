@@ -1,9 +1,17 @@
 import React from "react";
 import "./Sidebar.css";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = ({ getMessages, chats, activeChatId, onNewChat, onSwitchChat, isOpen }) => {
+    const navigate = useNavigate()
+    const loginPg = () => {
+        navigate('/login')
+    }
     return (
         <aside className={`sidebar ${isOpen ? "open" : ""}`}>
+            <button className="new-chat-btn" onClick={loginPg}>
+                Login
+            </button>
             <button className="new-chat-btn" onClick={onNewChat}>
                 + New Chat
             </button>

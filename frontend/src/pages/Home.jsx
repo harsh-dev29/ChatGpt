@@ -2,16 +2,17 @@ import React, { useEffect, useState } from "react";
 import { LogIn, Menu, Plus, TruckElectric } from "lucide-react";
 import { io } from "socket.io-client";
 import { useDispatch, useSelector } from "react-redux";
-import ThemeToggle from "../components/ThemeToggle";
 import Sidebar from "../components/Sidebar/Sidebar";
 import ChatBox from "../components/ChatBox/ChatBox";
 import ChatInput from "../components/ChatInput/ChatInput";
 import { addMessage, createNewChat, setChats, setMessagesForChat, switchChat } from "../store/chatSlice";
 import axios from "axios";
 import "../styles/theme.css";
+import ThemeToggle from './../components/ThemeToggle';
+import { useNavigate } from 'react-router-dom';
 
 // Declare socket outside the component to ensure a single instance
-const socket = io("https://chatgpt-cwfx.onrender.com", {
+const socket = io("http://localhost:3000", {
     withCredentials: true,
 });
 
@@ -21,7 +22,7 @@ const Home = () => {
 
     const [input, setInput] = useState("");
     const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
-
+    const navigate = useNavigate()
 
     // The dependency array ensures this effect runs once on mount
 
@@ -54,7 +55,7 @@ const Home = () => {
     };
 
     const getMessages = async (chatId) => {
-        const response = await axios.get(`https://chatgpt-cwfx.onrender.com/api/chat/messages/${chatId}`, { withCredentials: true })
+        const response = await axios.get(`http://localhost:3000/api/chat/messages/${chatId}`, { withCredentials: true })
         console.log("Fetched messages for chat:", response.data.messages);
         setMessages(response.data.messages.map(m => ({
             content: m.content,
@@ -82,7 +83,7 @@ const Home = () => {
         const title = prompt("Enter a title for you new chat:")
         if (!title) return
 
-        const respsonse = await axios.post('https://chatgpt-cwfx.onrender.com/api/chat', {
+        const respsonse = await axios.post('http://localhost:3000/api/chat', {
             title
         }, {
             withCredentials: true
@@ -101,7 +102,7 @@ const Home = () => {
     };
     useEffect(() => {
         // Fetch chats from the backend on component mount
-        axios.get("https://chatgpt-cwfx.onrender.com/api/chat", { withCredentials: true }).then(response => {
+        axios.get("http://localhost:3000/api/chat", { withCredentials: true }).then(response => {
             // Ensure messages array exists for each chat before setting the state
             const chatsWithMessages = response.data.chats.map(chat => ({
                 ...chat,
@@ -137,9 +138,11 @@ const Home = () => {
 
     return (
         <>
-            <ThemeToggle />
-
+            <div className="theme-toggle">
+                <ThemeToggle />
+            </div>
             <div className="home-container">
+
                 {/* Sidebar */}
                 <Sidebar
                     chats={chats}
@@ -158,6 +161,7 @@ const Home = () => {
                     >
                         <Menu size={22} />
                     </button>
+
                     {!activeChatId ? (
                         <div className="chat-empty">
                             <h1>Welcome 👋</h1>
@@ -165,7 +169,7 @@ const Home = () => {
                         </div>
                     ) : (
                         <ChatBox
-                            messages={activeChat.messages} newMsgs={newMsgs} />
+                            messages={activeChat.messages} />
                     )}
 
                     <div className="chat-input-container">

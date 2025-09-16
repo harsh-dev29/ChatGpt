@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import "./ChatBox.css";
 
 const ChatBox = ({ messages }) => {
+
     if (!messages || messages.length === 0) {
         return (
             <div className="chat-box empty">
@@ -18,16 +19,19 @@ const ChatBox = ({ messages }) => {
         }
     }, [messages]);
     return (
-        <div className="chat-box" ref={chatContainerRef}>
-            {messages.map((msg, idx) => (
-                <div
-                    key={idx}
-                    className={`chat-message ${msg.role == "user" ? "user-msg" : "ai-msg"}`}
-                >
-                    {msg.content}
-                </div>
-            ))}
-        </div>
+        <>
+
+            <div className="chat-box" ref={chatContainerRef}>
+                {messages.map((msg, idx) => (
+                    <div
+                        key={idx}
+                        className={`chat-message ${msg.role == "user" ? "user-msg" : "ai-msg"}`}
+                    >
+                        {msg.content}
+                    </div>
+                ))}
+            </div>
+        </>
     );
 };
 
